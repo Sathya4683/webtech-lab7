@@ -1,105 +1,80 @@
-```markdown
-# Countdown Timer App
 
-A simple countdown timer web application built with React + Vite.  
-Users can set a custom time (minutes & seconds), start, pause, and reset the timer.
+# CV, Countdown Timer and Thermostat React App
 
----
-
-## UI Preview
-
-![UI Mockup](assets/figma.png)
+## Overview
+This project is a React application built with Vite and React Router. It includes:  
+- CV-related routes (Home, Education, Skills, Projects, Experience, Achievements).  
+- A Countdown Timer (Lab 6).  
+- A Thermostat (Lab 5).  
 
 ---
 
-## Features
-
-- Set countdown time (minutes & seconds)
-- Start, pause, and reset the timer
-- Built using React functional components, props, `useState`, and `useEffect`
+## Routes
+- `/` → Home  
+- `/education` → Education  
+- `/skills` → Skills  
+- `/projects` → Projects  
+- `/experience` → Experience  
+- `/achievements` → Achievements  
+- `/timer` → Countdown Timer  
+- `/thermostat` → Thermostat  
 
 ---
 
 ## Component Hierarchy
+
 ```
 
 App
-├── TimeSetter
-│ └── props: { onSetTime }
-│
-├── TimerDisplay
-│ └── props: { remaining }
-│
-└── ControlButtons
-└── props: { isRunning, onStart, onPause, onReset }
-
-````
-
----
-
-## Component Details
-
-### App (Parent)
-- Role: Main container; manages state, countdown logic, and passes props to children.
-- State:
-  - `time`: total time set in seconds
-  - `remaining`: time left in seconds
-  - `isRunning`: boolean flag for timer state
-
-### TimeSetter (Child)
-- Role: Input for minutes & seconds, sets the timer.
-- Props:
-  - `onSetTime(minutes, seconds)` → function from App to update timer duration
-
-### TimerDisplay (Child)
-- Role: Displays countdown in `MM:SS` format.
-- Props:
-  - `remaining` → number of seconds left in countdown
-
-### ControlButtons (Child)
-- Role: Provides Start, Pause, and Reset controls.
-- Props:
-  - `isRunning` → boolean to toggle Start/Pause
-  - `onStart` → start countdown
-  - `onPause` → pause countdown
-  - `onReset` → reset countdown to initial set time
-
----
-
-## Installation & Setup
-
-```bash
-# Clone the repo
-git clone https://github.com/your-username/countdown-timer.git
-cd countdown-timer
-
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-````
-
----
-
-## Deployment
-
-Build the project and deploy to any static hosting provider (e.g., Vercel, Netlify):
-
-```bash
-npm run build
-```
-
-Upload the generated `dist/` folder to hosting provider.
-
----
-
-## Tech Stack
-
-- React + Vite
-- CSS (custom)
-- React Hooks (`useState`, `useEffect`)
+├── Navbar (Links to routes)
+├── Home
+├── Education
+├── Skills
+├── Projects
+├── Experience
+├── Achievements
+├── Timer
+│    ├── TimeSetter
+│    ├── TimerDisplay
+│    └── ControlButtons
+└── Thermostat
+├── ThermostatDisplay
+└── ThermostatControls
 
 ```
 
-```
+---
+
+## Props
+
+### Timer Components
+- **TimeSetter**  
+  - `onSetTime(minutes, seconds)` → Function to set countdown duration.  
+
+- **TimerDisplay**  
+  - `remaining` → Time left in seconds.  
+
+- **ControlButtons**  
+  - `isRunning` → Boolean for running state.  
+  - `onStart()` → Start timer.  
+  - `onPause()` → Pause timer.  
+  - `onReset()` → Reset timer.  
+
+### Thermostat Components
+- **ThermostatDisplay**  
+  - `temperature` → Current temperature (number).  
+  - `unit` → Display unit ("°C" or "°F").  
+
+- **ThermostatControls**  
+  - `onIncrease()` → Increase temperature.  
+  - `onDecrease()` → Decrease temperature.  
+  - `onToggleUnit()` → Switch Celsius/Fahrenheit.  
+  - `isCelsius` → Boolean indicating current unit.  
+
+---
+
+## Features
+- Timer: set custom minutes/seconds, start, pause, and reset.  
+- Thermostat: adjust temperature with buttons, toggle between Celsius and Fahrenheit.  
+- CV routes structured for resume-like navigation.  
+
