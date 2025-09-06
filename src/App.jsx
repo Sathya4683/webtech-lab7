@@ -1,51 +1,46 @@
-import React, { useState, useEffect } from "react";
-import TimeSetter from "./components/TimeSetter";
-import TimerDisplay from "./components/TimerDisplay";
-import ControlButtons from "./components/ControlButtons";
+// src/App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+import Home from "./pages/Home";
+import Education from "./pages/Education";
+import Skills from "./pages/Skills";
+import Projects from "./pages/Projects";
+import Experience from "./pages/Experience";
+import Achievements from "./pages/Achievements";
+import Timer from "./pages/Timer";
+import Thermostat from "./pages/Thermostat";
 
 export default function App() {
-  const [time, setTime] = useState(0);       // total time in seconds
-  const [remaining, setRemaining] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
-
-  // Effect to handle countdown
-  useEffect(() => {
-    let interval = null;
-    if (isRunning && remaining > 0) {
-      interval = setInterval(() => {
-        setRemaining((prev) => prev - 1);
-      }, 1000);
-    } else if (remaining === 0) {
-      setIsRunning(false);
-    }
-    return () => clearInterval(interval);
-  }, [isRunning, remaining]);
-
-  // Handlers
-  const handleSetTime = (minutes, seconds) => {
-    const totalSeconds = minutes * 60 + seconds;
-    setTime(totalSeconds);
-    setRemaining(totalSeconds);
-  };
-
-  const handleStart = () => setIsRunning(true);
-  const handlePause = () => setIsRunning(false);
-  const handleReset = () => {
-    setIsRunning(false);
-    setRemaining(time);
-  };
-
   return (
-    <div className="app">
-      <h1>⏳ Countdown Timer</h1>
-      <TimeSetter onSetTime={handleSetTime} />
-      <TimerDisplay remaining={remaining} />
-      <ControlButtons
-        isRunning={isRunning}
-        onStart={handleStart}
-        onPause={handlePause}
-        onReset={handleReset}
-      />
-    </div>
+    <Router>
+      <div>
+        {/* Simple Navbar */}
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/education">Education</Link></li>
+            <li><Link to="/skills">Skills</Link></li>
+            <li><Link to="/projects">Projects</Link></li>
+            <li><Link to="/experience">Experience</Link></li>
+            <li><Link to="/achievements">Achievements</Link></li>
+            <li><Link to="/timer">Timer</Link></li>
+            <li><Link to="/thermostat">Thermostat</Link></li>
+          </ul>
+        </nav>
+
+        {/* Define Routes */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/timer" element={<Timer />} />
+          <Route path="/thermostat" element={<Thermostat />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
