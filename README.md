@@ -38,8 +38,8 @@ App
 │    ├── TimerDisplay
 │    └── ControlButtons
 └── Thermostat
-├── ThermostatDisplay
-└── ThermostatControls
+│    ├── ThermostatDisplay
+│    └── ThermostatControls
 
 ```
 
